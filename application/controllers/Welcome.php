@@ -35,9 +35,9 @@ class Welcome extends CI_Controller {
 				} else {
 					$this->session->set_flashdata('msg','User Added Successfully!');
 				}
-				return redirect('index.php/welcome');
+				return redirect('welcome');
 			} else {
-				$this->load->view('welcome');
+				$this->load->view('register');
 			}
 		}
 

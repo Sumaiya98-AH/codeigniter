@@ -1,17 +1,18 @@
 <?php include_once('header.php');?>
 	<div class="container">
-		<h3>User Records</h3>
 		<?php 
             if($this->session->userdata('UserLoginSession'))
             {
                 $udata = $this->session->userdata('UserLoginSession');
-                echo 'Welcome'.' '.$udata['username'];
+                echo '<h5 style="color:#00008B;text-align:center;">Welcome'.' '.$udata['username'].'</h5>';
             }
             else
             {
                 redirect(base_url('welcome/login'));
             }
-            ?>
+        ?>
+		<h3>User Records</h3>
+		
 			<div class="text-right">
             <?php echo anchor('welcome','Logout',['class'=>'btn btn-primary']) ;?>
         	</div>
