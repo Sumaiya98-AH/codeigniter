@@ -23,10 +23,10 @@
 			<div class="collapse navbar-collapse" id="navbarTogglerDemo03">
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 					<li class="nav-item">
-						<a class="nav-link active" aria-current="page" href="<?= base_url('welcome') ?>">Home</a>
+						<a class="nav-link active" aria-current="page" href="<?= base_url('index.php/welcome') ?>">Home</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="<?= base_url('welcome/login') ?>">Login</a>
+						<a class="nav-link" href="<?= base_url('index.php/welcome/login') ?>">Login</a>
 					</li>
 				</ul>
 				<form class="d-flex">

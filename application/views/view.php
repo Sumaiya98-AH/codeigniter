@@ -8,7 +8,7 @@
 		<p>Start date: <?php echo $records->start_date;?> </p>
         <div class="form-group">
             <div class="col-md-10 col-md-offset-2">
-                <?php echo anchor('welcome','Back',['class'=>'btn btn-default']) ;?>
+                <?php echo anchor('welcome/dashboard','Back',['class'=>'btn btn-default']) ;?>
             </div>
         </div>
     </div>

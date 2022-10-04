@@ -6,90 +6,9 @@ class Welcome extends CI_Controller {
 	
 	public function index()
 	{
-		$this->load->model('queries');
-		$records= $this->queries->getRecords();
-		$this->load->view('register',['records'=>$records]);
+		$this->load->view('register');
     } 
-
-	public function create()
-	{
-		$this->load->view('create');
-	}
-	public function save()
-	{
-		$this->form_validation->set_rules('first_name', 'First Name', 'required');
-		$this->form_validation->set_rules('last_name', 'Last Name', 'required');
-		$this->form_validation->set_rules('position', 'Position', 'required');
-		$this->form_validation->set_rules('office', 'Office', 'required');
-		$this->form_validation->set_rules('age', 'Age', 'required');
-		$this->form_validation->set_rules('start_date', 'Start Date', 'required');
-
-		if ($this->form_validation->run())
-		{
-			$data=$this->input->post();
-			unset($data['submit']);
-			$this->load->model('queries');
-			if($this->queries->addRecords($data)){
-				$this->session->set_flashdata('msg','User Added Successfully!');
-			}else{
-				$this->session->set_flashdata('msg','Failed to Save!');
-			}
-			return redirect('welcome');
-		}
-		else
-		{
-			$this->load->view('create');
-		}	
-	}
-	public function update($id)
-	{
-		$this->load->model('queries');
-		$records= $this->queries->getSingleRecords($id);
-		$this->load->view('update',['records'=>$records]);
-	}
-	public function change($id)
-	{
-		$this->form_validation->set_rules('first_name', 'First Name', 'required');
-		$this->form_validation->set_rules('last_name', 'Last Name', 'required');
-		$this->form_validation->set_rules('position', 'Position', 'required');
-		$this->form_validation->set_rules('office', 'Office', 'required');
-		$this->form_validation->set_rules('age', 'Age', 'required');
-		$this->form_validation->set_rules('start_date', 'Start Date', 'required');
-
-		if ($this->form_validation->run())
-		{
-			$data=$this->input->post();
-			unset($data['submit']);
-			$this->load->model('queries');
-			if($this->queries->updateRecords($data,$id)){
-				$this->session->set_flashdata('msg','User Updated Successfully!');
-			}else{
-				$this->session->set_flashdata('msg','Failed to Update!');
-			}
-			return redirect('welcome');
-		}
-		else
-		{
-			$this->load->view('create');
-		}	
-	}
-	public function view($id)
-	{
-		$this->load->model('queries');
-		$records= $this->queries->getSingleRecords($id);
-		$this->load->view('view',['records'=>$records]);
-	}
-	public function delete($id)
-	{
-		$this->load->model('queries');
-		if ($this->queries->deleteRecords($id)){
-			$this->session->set_flashdata('msg','Record Deleted!');
-		}else{
-			$this->session->set_flashdata('msg','Failed to Delete!');
-		}
-		return redirect('welcome');
-	}
-
+	
 	function registerNow()
 	{
 			$this->form_validation->set_rules('username','User Name','required');
@@ -116,9 +35,9 @@ class Welcome extends CI_Controller {
 				} else {
 					$this->session->set_flashdata('msg','User Added Successfully!');
 				}
-				return redirect('welcome');
+				return redirect('index.php/welcome');
 			} else {
-				$this->load->view('home');
+				$this->load->view('welcome');
 			}
 		}
 
@@ -152,19 +71,19 @@ class Welcome extends CI_Controller {
 
 					$this->session->set_userdata('UserLoginSession',$session_data);
 
-					redirect(base_url('welcome/welcome_message'));
+					redirect(base_url('index.php/welcome/dashboard'));
 				}
 				else
 				{
 					$this->session->set_flashdata('error','Email or Password is Wrong');
-					redirect(base_url('welcome/login'));
+					redirect(base_url('index.php/welcome/login'));
 				}
 
 			}
 			else
 			{
 				$this->session->set_flashdata('error','Fill all the required fields');
-				redirect(base_url('welcome/login'));
+				redirect(base_url('index.php/welcome/login'));
 			}
 	}
 
@@ -175,12 +94,93 @@ class Welcome extends CI_Controller {
 	}
 	function dashboard()
 	{
-		$this->load->view('welcome_message');
-	}
-
+		$this->load->model('queries');
+		$records= $this->queries->getRecords();
+		$this->load->view('dashboard',['records'=>$records]);
+    } 
 	function logout()
 	{
 		session_destroy();
-		redirect(base_url('welcome/login'));
+		redirect(base_url('index.php/welcome/login'));
+	}
+
+	//Dashboard crud table
+	public function create()
+	{
+		$this->load->view('create');
+	}
+	public function save()
+	{
+		$this->form_validation->set_rules('first_name', 'First Name', 'required');
+		$this->form_validation->set_rules('last_name', 'Last Name', 'required');
+		$this->form_validation->set_rules('position', 'Position', 'required');
+		$this->form_validation->set_rules('office', 'Office', 'required');
+		$this->form_validation->set_rules('age', 'Age', 'required');
+		$this->form_validation->set_rules('start_date', 'Start Date', 'required');
+
+		if ($this->form_validation->run())
+		{
+			$data=$this->input->post();
+			unset($data['submit']);
+			$this->load->model('queries');
+			if($this->queries->addRecords($data)){
+				$this->session->set_flashdata('msg','User Added Successfully!');
+			}else{
+				$this->session->set_flashdata('msg','Failed to Save!');
+			}
+			return redirect('welcome/dashboard');
+		}
+		else
+		{
+			$this->load->view('create');
+		}	
+	}
+	public function update($id)
+	{
+		$this->load->model('queries');
+		$records= $this->queries->getSingleRecords($id);
+		$this->load->view('update',['records'=>$records]);
+	}
+	public function change($id)
+	{
+		$this->form_validation->set_rules('first_name', 'First Name', 'required');
+		$this->form_validation->set_rules('last_name', 'Last Name', 'required');
+		$this->form_validation->set_rules('position', 'Position', 'required');
+		$this->form_validation->set_rules('office', 'Office', 'required');
+		$this->form_validation->set_rules('age', 'Age', 'required');
+		$this->form_validation->set_rules('start_date', 'Start Date', 'required');
+
+		if ($this->form_validation->run())
+		{
+			$data=$this->input->post();
+			unset($data['submit']);
+			$this->load->model('queries');
+			if($this->queries->updateRecords($data,$id)){
+				$this->session->set_flashdata('msg','User Updated Successfully!');
+			}else{
+				$this->session->set_flashdata('msg','Failed to Update!');
+			}
+			return redirect('welcome/dashboard');
+		}
+		else
+		{
+			$this->load->view('create');
+		}	
+	}
+	public function view($id)
+	{
+		$this->load->model('queries');
+		$records= $this->queries->getSingleRecords($id);
+		$this->load->view('view',['records'=>$records]);
+	}
+	public function delete($id)
+	{
+		$this->load->model('queries');
+		if ($this->queries->deleteRecords($id)){
+			$this->session->set_flashdata('msg','Record Deleted!');
+		}else{
+			$this->session->set_flashdata('msg','Failed to Delete!');
+		}
+		return redirect('welcome/dashboard');
 	}
 }

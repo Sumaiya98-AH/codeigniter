@@ -61,7 +61,7 @@
             <div class="form-group">
             <div class="col-md-10 col-md-offset-2">
                 <?php echo form_submit(['name'=>'submit','value'=>'Submit','class'=>'btn btn-default']);;?>
-                <?php echo anchor('welcome','Back',['class'=>'btn btn-default']) ;?>
+                <?php echo anchor('welcome/dashboard','Back',['class'=>'btn btn-default']) ;?>
             </div>
             </div>
         </fieldset>

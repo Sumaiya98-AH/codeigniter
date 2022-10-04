@@ -12,7 +12,7 @@
                 redirect(base_url('welcome/login'));
             }
             ?>
-			<div>
+			<div class="text-right">
             <?php echo anchor('welcome','Logout',['class'=>'btn btn-primary']) ;?>
         	</div>
 			<?php if($msg=$this->session->flashdata('msg')):?>
