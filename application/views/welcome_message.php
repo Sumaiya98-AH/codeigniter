@@ -1,6 +1,20 @@
 <?php include_once('header.php');?>
 	<div class="container">
 		<h3>User Records</h3>
+		<?php 
+            if($this->session->userdata('UserLoginSession'))
+            {
+                $udata = $this->session->userdata('UserLoginSession');
+                echo 'Welcome'.' '.$udata['username'];
+            }
+            else
+            {
+                redirect(base_url('welcome/login'));
+            }
+            ?>
+			<div>
+            <?php echo anchor('welcome','Logout',['class'=>'btn btn-primary']) ;?>
+        	</div>
 			<?php if($msg=$this->session->flashdata('msg')):?>
 			<?php echo "<p>$msg</p>";?>
 			<?php endif;?>

@@ -23,6 +23,30 @@
         public function deleteRecords($id){
             return $this->db->delete('user_details',['id'=>$id]);
         }
+
+        function insertUser($data)
+        {
+            $this->db->insert('users',$data);
+        }
+    
+        function checkPassword($password,$email)
+        {
+            $query = $this->db->query("SELECT * FROM users WHERE password='$password' AND email='$email' AND status='1'");
+            if($query->num_rows()==1)
+            {
+                return $query->row();
+            }
+            else
+            {
+                return false;
+            }
+    
+        }
+        function is_logged() {
+            if (is_null($this->session->userdata('email'))) {
+                redirect(base_url('welcome/login'));
+            }
+       }
     }
     
 ?>
