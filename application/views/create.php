@@ -40,7 +40,7 @@
             </div>
             </div>
             <div class="form-group">
-            <label for="inputAge" class="col-md-2 control-label">Age</label>
+            <label for="inputAge" class="col-md-2 control-label">Age:</label>
             <div class="col-md-5">
                 <?php echo form_input(['name'=>'age','placeholder'=>'Age','class'=>'form-control','type'=>'number']);?>
             </div>
