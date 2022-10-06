@@ -46,7 +46,7 @@
 						<td>
 						<?php echo anchor("welcome/view/{$record->id}", 'View', ['class'=>'label label-primary']); ?>
 						<?php echo anchor("welcome/update/{$record->id}", 'Update', ['class'=>'label label-warning']); ?>
-						<?php echo anchor("welcome/delete/{$record->id}", 'Delelte', ['class'=>'label label-danger']); ?>
+						<?php echo anchor("welcome/delete/{$record->id}", 'Delete', ['class'=>'label label-danger']); ?>
 						</td>
 					</tr>
 					<?php endforeach; ?>
